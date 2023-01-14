@@ -24,7 +24,6 @@
 	  
 	q = deque()
 	visited = set()
-
 	q.append(0)
 	while q:
 	    start = q.popleft()
@@ -70,6 +69,14 @@
         while self.u[a] != a: a = self.u[a]
         return a
 
+# isPrime :
+	def isPrime(n):
+        if n < 2: return False
+        for x in range(2, int(n**0.5) + 1):
+            if n % x == 0:
+                return False
+        return True
+
 # prime factors 
 	def prime_factors(n):
             ans=[]
@@ -86,4 +93,25 @@
             return ans
 
 
+# Sieve of Eratosthenes (find prime numbers):
+	right+= 1                                   #  Example: right = 6   left  = 15
+
+                                                # Before sieve:  
+    prime = [False,False]+[True]*(right-2)      #  prime = [F,F,T,T,T,T,T,T,T,T,T,T,T,T,T,T]
+                                                #           0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+    for i in range(2,isqrt(right)+1):           # After sieve: 
+            for j in range(i * i, right, i):    #  prime = [F,F,T,T,F,T,F,T,F,F,F,T,F,T,F,F]
+                prime[j] = False                #           0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+    print(prime)                                # 
+    prime = [i for i,p in enumerate(prime)      #  prime = [              7,     11, 13,      ]
+             if p and left<=i<=right] 
+    #-------------- Other version :
+    if n < 2:
+    	return 0
+    strikes = [1] * n
+    strikes[0] = 0
+    strikes[1] = 0
+    for i in range(2, int(n**0.5)+1):
+        if  strikes[i] != 0:
+            strikes[i*i:n:i] = [0] * ((n-1-i*i)//i + 1)
 

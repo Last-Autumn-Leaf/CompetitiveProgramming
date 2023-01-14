@@ -108,4 +108,14 @@
             return a[0] * a[0] + a[1] * a[1] < b[0] * b[0] + b[1] * b[1];
         });
 
-
+# Sieve of Eratosthenes (find prime numbers):
+    vector<bool> prime(n + 1, true);
+    prime[0] = false;
+    prime[1] = false;
+    for (int i = 2; i * i <= n; i++) {
+        if (prime[i]) {
+            for (int j = i * i; j <= n; j += i) {
+                prime[j] = false;
+            }
+        }
+    }
