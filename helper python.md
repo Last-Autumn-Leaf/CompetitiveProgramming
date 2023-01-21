@@ -57,17 +57,16 @@
 
 
 # Union Find Class
-	class UnionFind(object):
-    def __init__(self, n):
-        self.u = list(range(n))
-        
-    def union(self, a, b):
-        ra, rb = self.find(a), self.find(b)
-        if ra != rb: self.u[ra] = rb
-    
-    def find(self, a):
-        while self.u[a] != a: a = self.u[a]
-        return a
+    class UnionFind(object):
+        def __init__(self, n):
+            self.u = list(range(n))
+            
+        def union(self, a, b):
+            ra, rb = self.find(a), self.find(b)
+            if ra != rb: self.u[ra] = rb
+        def find(self, a):
+            while self.u[a] != a: a = self.u[a]
+            return a
 
 # isPrime :
 	def isPrime(n):
@@ -114,4 +113,18 @@
     for i in range(2, int(n**0.5)+1):
         if  strikes[i] != 0:
             strikes[i*i:n:i] = [0] * ((n-1-i*i)//i + 1)
+
+
+# Boyer-Moore Voting Algorithm :
+count majority element
+    count = 0
+    candidate = None
+
+    for num in nums:
+        if count == 0:
+            candidate = num
+        count += (1 if num == candidate else -1)
+
+    return candidate
+
 

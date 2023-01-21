@@ -119,3 +119,22 @@
             }
         }
     }
+
+
+# Union find :
+    public:
+    int par[26];
+    
+    int find(int x){
+        if(par[x]==-1) return x;
+        return par[x]=find(par[x]);
+    }
+    
+    void Union(int x, int y) {
+        x = find(x);
+        y = find(y);
+        
+        if (x != y) 
+            par[x] = y; 
+    }
+
