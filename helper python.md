@@ -4,7 +4,10 @@
 
 
 # BINARY SEARCH
-	
+
+The last valid index is left - 1
+
+left is the first index that fails the condition
 
     def binary_search(array) -> int:
     	    def condition(value) -> bool:
@@ -57,6 +60,8 @@
 
 
 # Union Find Class
+Naive approch
+
     class UnionFind(object):
         def __init__(self, n):
             self.u = list(range(n))
@@ -67,6 +72,32 @@
         def find(self, a):
             while self.u[a] != a: a = self.u[a]
             return a
+
+Path compression and Union by rank size
+
+    class UnionFind:
+        def __init__(self, n):
+            self.parent = list(range(n))
+            self.rank = [0] * n  # or use size
+
+        def find(self, a):
+            if self.parent[a] != a:
+                self.parent[a] = self.find(self.parent[a])  # path compression
+            return self.parent[a]
+
+        def union(self, a, b):
+            ra, rb = self.find(a), self.find(b)
+            if ra == rb:
+                return
+            if self.rank[ra] < self.rank[rb]:
+                self.parent[ra] = rb
+            elif self.rank[ra] > self.rank[rb]:
+                self.parent[rb] = ra
+            else:
+                self.parent[rb] = ra
+                self.rank[ra] += 1
+
+
 
 # isPrime :
 	def isPrime(n):
